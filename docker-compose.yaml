@@ -1,8 +1,17 @@
 version: '3.8'
 services:
   app:
-    build: ./docker
+    build:
+      context: ./docker/app/
+      dockerfile: Dockerfile
     container_name: nginxPhpLaravelProject-app
+    platform: linux/x86_64
+    tty: true
+    stdin_open: true
+    environment:
+      TZ: "Asia/Tokyo"
+    expose:
+      - 9000
     volumes:
       - ./app:/var/www/app
 
